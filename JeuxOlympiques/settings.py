@@ -76,6 +76,11 @@ TEMPLATES = [
     },
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "https://studijeuxolympiquesparis.herokuapp.com",
+    "https://www.herokucdn.com",
+]
+
 WSGI_APPLICATION = 'JeuxOlympiques.wsgi.application'
 
 
