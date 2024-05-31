@@ -30,12 +30,15 @@ DEBUG = os.environ.get('DEBUG', 'FALSE') == 'True'
 
 ALLOWED_HOSTS = ['studijeuxolympiquesparis.herokuapp.com']
 
+#Pour autoriser toutes les origines
+CORS_ALLOWED_ORIGINS = True
 
 # Application definition
 
 INSTALLED_APPS = [
     'offres',
     'users',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'JeuxOlympiques.urls'
@@ -101,6 +105,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CSP_FRAME_ANCESTORS = [
+    "'self'",
+    "https://www.herokucdn.com"
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -138,3 +146,4 @@ LOGIN_REDIRECT_URL = 'accueil'
 LOGOUT_REDIRECT_URL = 'connexion'
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
