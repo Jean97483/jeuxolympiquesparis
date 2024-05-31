@@ -9,10 +9,11 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
-import dj_database_url
 from pathlib import Path
 import os
+import dj_database_url
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-1!nzbbv0p99mi(0upe@+mtiez!mp^oxxyo#$s#f51y$0hs=6d0'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'A2DA7YWCirneHp1cNiWYnNFMQkF8c4NDJtnY0vBa0VqvkxOUl8QNVuCnYFZ8l90KKPA')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'FALSE') == 'True'
 
-ALLOWED_HOSTS = ['https://studijeuxolympiquesparis-0c8fb0ed72c8.herokuapp.com/']
+ALLOWED_HOSTS = ['studijeuxolympiquesparis.herokuapp.com']
 
 
 # Application definition
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'JeuxOlympiques.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('JAWSDB_URL'), conn_max_age=600, ssl_require=True)
+    'default': dj_database_url.config(conn_max_age=600)
 }
 
 
