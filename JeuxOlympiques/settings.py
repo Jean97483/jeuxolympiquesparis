@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import dj_database_url
 from pathlib import Path
 import os
 
@@ -24,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1!nzbbv0p99mi(0upe@+mtiez!mp^oxxyo#$s#f51y$0hs=6d0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://studijeuxolympiquesparis-0c8fb0ed72c8.herokuapp.com/']
 
 
 # Application definition
@@ -77,14 +78,7 @@ WSGI_APPLICATION = 'JeuxOlympiques.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'olympics',
-        'USER': 'root',
-        'PASSWORD': 'Jesusjetesuis974!',
-        'HOST': 'localhost',
-        'PORT': '3306'
-    }
+    'default': dj_database_url.config(default=os.environ.get('JAWSDB_URL'), conn_max_age=600, ssl_require=True)
 }
 
 
