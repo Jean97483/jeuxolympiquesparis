@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+DATABASE_URL = os.getenv('DATABASE_URL')
+
 import dj_database_url
 
 
@@ -90,7 +97,7 @@ WSGI_APPLICATION = 'JeuxOlympiques.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600)
+    'default': dj_database_url.config(default=DATABASE_URL)
 }
 
 
